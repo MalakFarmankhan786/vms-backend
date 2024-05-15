@@ -2,12 +2,14 @@ const express = require("express");
 const sequelize = require("./sequelize");
 const bodyParser = require("body-parser");
 
+const vendorRoutes = require("./routes/vendor");
+const purchaseOrder = require("./routes/purchaseOrder")
 const app = express();
 
-const vendorRoutes = require("./routes/vendor");
 
 app.use(bodyParser.json());
 
+app.use("/api", purchaseOrder);
 app.use("/api", vendorRoutes);
 
 app.use((error, req, res, next) => {
